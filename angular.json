@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "hackIdeas"
+    }
+  },
+  "defaultProject": "hackIdeas",
+  "cli": {
+    "analytics": false
+  }
 }

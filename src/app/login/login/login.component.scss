@@ -1,0 +1,36 @@
+.login-container {
+  width: 500px;
+  height: 130px;
+  background-color: rgb(240, 248, 255, 0.5);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  button {
+    width: 100%;
+  }
+  .icon-container {
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin: 0;
+    width: 50px;
+    padding: 0;
+    i {
+      font-size: 25px;
+    }
+  }
+}
+
+// add this to variables.scss
+$breakpoint-tablet: 500px;
+@media (max-width: $breakpoint-tablet) {
+  .login-container {
+    width: 250px;
+  }
+}
