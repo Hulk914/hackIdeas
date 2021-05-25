@@ -35,10 +35,37 @@ export class ChallengeListComponent implements OnInit {
       tags: this.fb.array(
         post.tags ? post.tags.map((tag) => this.fb.group({ tag })) : ''
       ),
+      likes: [post.likes ? post.likes : 0],
     });
   }
 
-  likeHandler(index) {
-    console.log(index);
+  likeHandler(id, formIndex) {
+    const index = this.dataStore.user.likedPosts.findIndex(
+      (post) => post === id
+    );
+    const formCtrl = (
+      this.dataStore.parentFormGroup.get('posts') as FormArray
+    ).controls[formIndex.toString()].get('likes');
+    if (index === -1) {
+      this.dataStore.user.likedPosts.push(id);
+      formCtrl.setValue(formCtrl.value + 1);
+    } else {
+      this.dataStore.user.likedPosts.splice(index, 1);
+      formCtrl.setValue(formCtrl.value - 1);
+    }
+    this.challenges = this.dataStore.parentFormGroup.get('posts').value;
+  }
+
+  isLiked(id) {
+    const index = this.dataStore.user.likedPosts.findIndex(
+      (post) => post === id
+    );
+    return index !== -1;
+  }
+
+  sortChallenges(sortBasis) {
+    if (sortBasis === 'upvote') {
+      this.challenges.sort((a, b) => a.likes - b.likes);
+    }
   }
 }

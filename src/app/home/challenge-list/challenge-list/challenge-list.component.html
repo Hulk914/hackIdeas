@@ -1,12 +1,39 @@
 <div class="list-container">
   <div *ngFor="let item of challenges; let i = index" class="list-item">
-    <span class="like-container" (click)="likeHandler(i)"
-      ><i class="bi bi-heart"></i
-    ></span>
-    <h3>{{ item?.title }}</h3>
-    <p>{{ item?.description }}</p>
+    <div *ngIf="i === 0" class="d-flex justify-content-between">
+      <button
+        (click)="sortChallenges('upvote')"
+        type="button"
+        class="btn btn-link"
+      >
+        Sort By Most Upvotes
+      </button>
+      <button
+        (click)="sortChallenges('date')"
+        type="button"
+        class="btn btn-link"
+      >
+        Show Latest Challenges
+      </button>
+    </div>
+    <h3>
+      {{ item?.title }}
+      <span class="like-container" (click)="likeHandler(item.id, i)">
+        <i
+          class="bi like-icon"
+          [ngClass]="{
+            'bi-heart': !isLiked(item.id),
+            'bi-heart-fill': isLiked(item.id)
+          }"
+          [attr.value]="item?.likes"
+        ></i>
+      </span>
+    </h3>
+    <p class="description">{{ item?.description }}</p>
     <div class="badge-container">
-      <span *ngFor="let badge of item.tags" class="custom-badge">{{badge?.tag}}</span>
+      <span *ngFor="let badge of item.tags" class="custom-badge">{{
+        badge?.tag
+      }}</span>
     </div>
   </div>
 </div>

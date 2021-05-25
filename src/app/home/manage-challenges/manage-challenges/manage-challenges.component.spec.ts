@@ -1,3 +1,5 @@
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -9,11 +11,10 @@ describe('ManageChallengesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ManageChallengesComponent ],
-      imports: [ReactiveFormsModule],
-      providers: [FormBuilder]
-    })
-    .compileComponents();
+      declarations: [ManageChallengesComponent],
+      imports: [ReactiveFormsModule, RouterTestingModule],
+      providers: [FormBuilder],
+    }).compileComponents();
   });
 
   beforeEach(() => {
