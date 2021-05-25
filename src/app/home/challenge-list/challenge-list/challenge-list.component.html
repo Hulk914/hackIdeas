@@ -1,6 +1,6 @@
 <div class="list-container">
   <div *ngFor="let item of challenges; let i = index" class="list-item">
-    <div *ngIf="i === 0" class="d-flex justify-content-between">
+    <div *ngIf="i === 0" class="sort-container">
       <button
         (click)="sortChallenges('upvote')"
         type="button"

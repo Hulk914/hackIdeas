@@ -14,28 +14,32 @@ export class ChallengeListComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.dataStore.parentFormGroup) {
-      this.initializeForm();
+      this.initializeForm(this.dataStore.posts);
     }
     this.challenges = this.dataStore.parentFormGroup.get('posts').value;
   }
 
-  initializeForm() {
+  initializeForm(postsArr) {
     this.dataStore.parentFormGroup = this.fb.group({
-      posts: this.fb.array(
-        this.dataStore.posts.map((post) => this.createPosts(post))
-      ),
+      posts: this.fb.array(postsArr.map((post) => this.createPosts(post))),
     });
   }
 
   createPosts(post) {
+    // post sort array from form is synced hence tag is nested further
     return this.fb.group({
-      id: [post.id ? post.id : ''],
+      id: [post.id ? post.id : `id${new Date().getTime()}`],
       title: [post.title ? post.title : ''],
       description: [post.description ? post.description : ''],
       tags: this.fb.array(
-        post.tags ? post.tags.map((tag) => this.fb.group({ tag })) : ''
+        post.tags
+          ? post.tags.map((tag) =>
+              tag.tag ? this.fb.group({ tag: tag.tag }) : this.fb.group({ tag })
+            )
+          : ''
       ),
       likes: [post.likes ? post.likes : 0],
+      createdOn: [post.createdOn ? post.createdOn : new Date()],
     });
   }
 
@@ -65,7 +69,12 @@ export class ChallengeListComponent implements OnInit {
 
   sortChallenges(sortBasis) {
     if (sortBasis === 'upvote') {
-      this.challenges.sort((a, b) => a.likes - b.likes);
+      this.challenges.sort((a, b) => b.likes - a.likes);
+    } else {
+      this.challenges.sort(
+        (a, b) => b.createdOn.getTime() - a.createdOn.getTime()
+      );
     }
+    this.initializeForm(this.challenges);
   }
 }

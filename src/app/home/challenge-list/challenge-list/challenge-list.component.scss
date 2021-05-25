@@ -1,3 +1,5 @@
+@import "~src/scss/variables";
+
 .list-container {
   .list-item {
     margin: auto;
@@ -7,6 +9,11 @@
     text-align: center;
     margin-bottom: 2rem;
     border-radius: 20px;
+
+    .sort-container {
+      display: flex;
+      justify-content: space-around;
+    }
 
     h3 {
       margin-top: 1rem;
@@ -48,5 +55,13 @@
         padding: 1%;
       }
     }
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .sort-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }

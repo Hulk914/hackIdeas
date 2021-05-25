@@ -40,13 +40,14 @@ export class ManageChallengesComponent implements OnInit {
 
   createPosts(post: any = {}) {
     return this.fb.group({
-      id: [post.id ? post.id : ''],
+      id: [post.id ? post.id : `id${new Date().getTime()}`],
       title: [post.title ? post.title : ''],
       description: [post.description ? post.description : ''],
       tags: this.fb.array(
         post.tags ? post.tags.map((tag) => this.fb.group({ tag })) : []
       ),
       likes: [post.likes ? post.likes : 0],
+      createdOn: [post.createdOn ? post.createdOn : new Date()],
     });
   }
 
