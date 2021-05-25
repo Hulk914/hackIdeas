@@ -1,0 +1,28 @@
+<div class="nav-container">
+  <div class="left-heading">HACK</div>
+  <div class="brand-icon">
+    <i class="bi bi-eyeglasses"></i>
+  </div>
+  <div class="right-heading">IDEAS</div>
+</div>
+
+<ul class="p-0 m-0">
+  <li>
+    <a
+      routerLink="/home/features/view"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >View Challenges</a
+    >
+  </li>
+
+  <li>
+    <a
+      routerLink="/home/features/manage"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >Manage Challenges</a
+    >
+  </li>
+</ul>
+<router-outlet></router-outlet>

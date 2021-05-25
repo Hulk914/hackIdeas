@@ -1,4 +1,7 @@
 <div class="login-container">
+  <div class="brand-icon mb-1">
+    <i class="bi bi-eyeglasses"></i>
+  </div>
   <div class="input-group m-1">
     <div class="input-group-prepend">
       <span class="input-group-text border-right-0 border icon-container">
@@ -11,5 +14,5 @@
       placeholder="Employee ID"
     />
   </div>
-  <button type="button" class="btn btn-dark m-1">Login</button>
+  <button (click)="loginHandler()" type="button" class="btn btn-dark m-1">Login</button>
 </div>

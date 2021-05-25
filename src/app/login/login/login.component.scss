@@ -1,6 +1,8 @@
+@import "~src/scss/variables";
+
 .login-container {
   width: 500px;
-  height: 130px;
+  height: 200px;
   background-color: rgb(240, 248, 255, 0.5);
   position: absolute;
   left: 50%;
@@ -11,6 +13,9 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  .brand-icon {
+    @include brand-icon
+  }
   button {
     width: 100%;
   }
@@ -27,9 +32,7 @@
   }
 }
 
-// add this to variables.scss
-$breakpoint-tablet: 500px;
-@media (max-width: $breakpoint-tablet) {
+@media (max-width: $breakpoint-mobile) {
   .login-container {
     width: 250px;
   }

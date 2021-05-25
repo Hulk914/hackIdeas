@@ -1,0 +1,12 @@
+<div class="list-container">
+  <div *ngFor="let item of challenges; let i = index" class="list-item">
+    <span class="like-container" (click)="likeHandler(i)"
+      ><i class="bi bi-heart"></i
+    ></span>
+    <h3>{{ item?.title }}</h3>
+    <p>{{ item?.description }}</p>
+    <div class="badge-container">
+      <span *ngFor="let badge of item.tags" class="custom-badge">{{badge?.tag}}</span>
+    </div>
+  </div>
+</div>

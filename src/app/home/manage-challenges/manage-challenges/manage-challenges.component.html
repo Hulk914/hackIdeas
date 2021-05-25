@@ -1,0 +1,28 @@
+<form class="list-container" [formGroup]="parentFormGroup">
+  <ng-container formArrayName="posts">
+    <div
+      *ngFor="let postCtrl of postsFormArray?.controls; let i = index"
+      class="list-item"
+      [formGroupName]="i"
+    >
+      <div class="input-group m-1 w-100">
+        <input
+          formControlName="title"
+          type="text"
+          class="form-control"
+          placeholder="Challenge Title"
+        />
+      </div>
+      <div class="form-group w-100 m-1">
+        <textarea
+          class="form-control"
+          rows="3"
+          placeholder="Challenge Description"
+        ></textarea>
+      </div>
+      <div class="badge-container">
+        <span *ngFor="let badge of [0, 1, 2]" class="custom-badge">tag</span>
+      </div>
+    </div>
+  </ng-container>
+</form>

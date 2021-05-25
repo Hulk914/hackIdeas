@@ -1,0 +1,23 @@
+.list-container {
+  .list-item {
+    margin: auto;
+    background-color: white;
+    width: 50vw;
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    border-radius: 20px;
+
+    .badge-container {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: space-around;
+      .custom-badge {
+        border-radius: 20px;
+        border: 1px solid black;
+        background-color: rgba(13, 10, 253, 0.25);
+        padding: 1%;
+      }
+    }
+  }
+}
