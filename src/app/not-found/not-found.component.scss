@@ -1,0 +1,11 @@
+div {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  background: aliceblue;
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+}

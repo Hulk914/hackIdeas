@@ -1,3 +1,4 @@
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -10,7 +11,8 @@ describe('LoginComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ LoginComponent ],
-      imports: [RouterTestingModule]
+      imports: [RouterTestingModule, ReactiveFormsModule],
+      providers: [FormBuilder]
     })
     .compileComponents();
   });

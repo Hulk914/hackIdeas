@@ -1,6 +1,6 @@
 import { DataStoreService } from './../../../data-store.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormArray } from '@angular/forms';
+import { FormBuilder, FormArray, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-challenge-list',
@@ -29,8 +29,11 @@ export class ChallengeListComponent implements OnInit {
     // post sort array from form is synced hence tag is nested further
     return this.fb.group({
       id: [post.id ? post.id : `id${new Date().getTime()}`],
-      title: [post.title ? post.title : ''],
-      description: [post.description ? post.description : ''],
+      title: [post.title ? post.title : '', Validators.required],
+      description: [
+        post.description ? post.description : '',
+        Validators.required,
+      ],
       tags: this.fb.array(
         post.tags
           ? post.tags.map((tag) =>

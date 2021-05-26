@@ -23,6 +23,12 @@
           id="title"
         />
       </div>
+      <p
+        *ngIf="postCtrl.get('title').invalid && postCtrl.get('title').touched"
+        class="errorMsg"
+      >
+        Please Enter Challenge Title
+      </p>
       <div class="form-group mt-3">
         <label for="description">Challenge Description</label>
         <textarea
@@ -32,6 +38,15 @@
           rows="5"
           placeholder="Challenge Description"
         ></textarea>
+        <p
+          *ngIf="
+            postCtrl.get('description').invalid &&
+            postCtrl.get('description').touched
+          "
+          class="errorMsg"
+        >
+          Please Enter Challenge Title
+        </p>
       </div>
       <div class="badge-container">
         <span

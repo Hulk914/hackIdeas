@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
+import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { DataStoreService } from './../../../data-store.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
@@ -41,8 +41,11 @@ export class ManageChallengesComponent implements OnInit {
   createPosts(post: any = {}) {
     return this.fb.group({
       id: [post.id ? post.id : `id${new Date().getTime()}`],
-      title: [post.title ? post.title : ''],
-      description: [post.description ? post.description : ''],
+      title: [post.title ? post.title : '', Validators.required],
+      description: [
+        post.description ? post.description : '',
+        Validators.required,
+      ],
       tags: this.fb.array(
         post.tags ? post.tags.map((tag) => this.fb.group({ tag })) : []
       ),
@@ -74,6 +77,10 @@ export class ManageChallengesComponent implements OnInit {
   }
 
   saveChanges() {
+    if(this.postsFormArray.invalid) {
+      this.postsFormArray.markAllAsTouched();
+      return;
+    }
     this.router.navigate(['/home/features/view']);
   }
 

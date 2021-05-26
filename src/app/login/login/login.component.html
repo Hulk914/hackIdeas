@@ -2,17 +2,28 @@
   <div class="brand-icon mb-1">
     <i class="bi bi-eyeglasses"></i>
   </div>
-  <div class="input-group m-1">
-    <div class="input-group-prepend">
-      <span class="input-group-text border-right-0 border icon-container">
-        <i class="bi bi-person-badge"></i>
-      </span>
+  <form [formGroup]="userForm" (ngSubmit)="loginHandler()" class="w-100">
+    <div class="input-group m-1">
+      <div class="input-group-prepend">
+        <span class="input-group-text border-right-0 border icon-container">
+          <i class="bi bi-person-badge"></i>
+        </span>
+      </div>
+      <input
+        class="form-control py-2 border-left-0 border"
+        type="text"
+        placeholder="Employee ID"
+        formControlName="empId"
+      />
     </div>
-    <input
-      class="form-control py-2 border-left-0 border"
-      type="text"
-      placeholder="Employee ID"
-    />
-  </div>
-  <button (click)="loginHandler()" type="button" class="btn btn-dark m-1">Login</button>
+    <p
+      class="errorMsg"
+      *ngIf="
+        this.userForm.get('empId').touched && this.userForm.get('empId').invalid
+      "
+    >
+      Please enter employee id
+    </p>
+    <button type="submit" class="btn btn-dark m-1">Login</button>
+  </form>
 </div>

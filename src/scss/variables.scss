@@ -1,4 +1,11 @@
 $breakpoint-mobile: 500px;
+$rounded-border-radius: 20px;
+$error-border: 1px solid red !important;
+
+@mixin errorStyle {
+  color: red;
+  font-weight: 500;
+}
 
 @mixin brand-icon {
     border: 1px solid black;

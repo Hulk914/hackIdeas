@@ -13,8 +13,23 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  input {
+    &.ng-invalid.ng-touched {
+      border: $error-border;
+    }
+  }
+
+  .errorMsg {
+    @include errorStyle;
+    margin: 0.25rem;
+    text-align: center;
+    background-color: lightcyan;
+    border: 1px solid gray;
+  }
+
   .brand-icon {
-    @include brand-icon
+    @include brand-icon;
   }
   button {
     width: 100%;
@@ -35,5 +50,9 @@
 @media (max-width: $breakpoint-mobile) {
   .login-container {
     width: 250px;
+  }
+
+  .brand-icon {
+    font-size: 40px;
   }
 }
