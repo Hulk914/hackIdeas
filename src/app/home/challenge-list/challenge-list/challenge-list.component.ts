@@ -10,7 +10,7 @@ import { FormBuilder, FormArray, Validators } from '@angular/forms';
 export class ChallengeListComponent implements OnInit {
   challenges = [];
 
-  constructor(private dataStore: DataStoreService, private fb: FormBuilder) {}
+  constructor(public dataStore: DataStoreService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     if (!this.dataStore.parentFormGroup) {

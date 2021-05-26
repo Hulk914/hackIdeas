@@ -4,7 +4,7 @@ import { ChallengeListComponent } from './challenge-list/challenge-list/challeng
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [
+export const homeRoutes: Routes = [
   {
     path: 'features',
     component: HomeComponent,
@@ -21,7 +21,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(homeRoutes)],
   exports: [RouterModule],
 })
 export class HomeRoutingModule {}

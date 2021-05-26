@@ -13,7 +13,7 @@ export class ManageChallengesComponent implements OnInit {
   availableTags: string[] = [];
 
   constructor(
-    private dataStore: DataStoreService,
+    public dataStore: DataStoreService,
     private fb: FormBuilder,
     private router: Router
   ) {}
