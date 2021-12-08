@@ -13,8 +13,15 @@ export class ChallengeListComponent implements OnInit {
   constructor(public dataStore: DataStoreService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
+    if (localStorage.getItem('posts')) {
+      this.dataStore.users[this.dataStore.loggedUserIndex].posts = JSON.parse(
+        localStorage.getItem('posts')
+      );
+    }
     if (!this.dataStore.parentFormGroup) {
-      this.initializeForm(this.dataStore.posts);
+      this.initializeForm(
+        this.dataStore.users[this.dataStore.loggedUserIndex].posts
+      );
     }
     this.challenges = this.dataStore.parentFormGroup.get('posts').value;
   }
@@ -47,26 +54,29 @@ export class ChallengeListComponent implements OnInit {
   }
 
   likeHandler(id, formIndex) {
-    const index = this.dataStore.user.likedPosts.findIndex(
-      (post) => post === id
-    );
+    const index = this.dataStore.users[
+      this.dataStore.loggedUserIndex
+    ].likedPosts.findIndex((post) => post === id);
     const formCtrl = (
       this.dataStore.parentFormGroup.get('posts') as FormArray
     ).controls[formIndex.toString()].get('likes');
     if (index === -1) {
-      this.dataStore.user.likedPosts.push(id);
+      this.dataStore.users[this.dataStore.loggedUserIndex].likedPosts.push(id);
       formCtrl.setValue(formCtrl.value + 1);
     } else {
-      this.dataStore.user.likedPosts.splice(index, 1);
+      this.dataStore.users[this.dataStore.loggedUserIndex].likedPosts.splice(
+        index,
+        1
+      );
       formCtrl.setValue(formCtrl.value - 1);
     }
     this.challenges = this.dataStore.parentFormGroup.get('posts').value;
   }
 
   isLiked(id) {
-    const index = this.dataStore.user.likedPosts.findIndex(
-      (post) => post === id
-    );
+    const index = this.dataStore.users[
+      this.dataStore.loggedUserIndex
+    ].likedPosts.findIndex((post) => post === id);
     return index !== -1;
   }
 

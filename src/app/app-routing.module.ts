@@ -1,3 +1,4 @@
+import { LoginGuardService } from './login-guard.service';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -10,6 +11,7 @@ export const routes: Routes = [
   },
   {
     path: 'home',
+    canLoad: [LoginGuardService],
     loadChildren: () =>
       import('./home/home.module').then((mod) => mod.HomeModule),
   },

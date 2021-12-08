@@ -81,6 +81,7 @@ export class ManageChallengesComponent implements OnInit {
       this.postsFormArray.markAllAsTouched();
       return;
     }
+    localStorage.setItem('posts',JSON.stringify(this.dataStore.parentFormGroup.value.posts));
     this.router.navigate(['/home/features/view']);
   }
 
